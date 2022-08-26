@@ -40,10 +40,11 @@ namespace PruebaToughbuilt.Api
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "PruebaToughbuilt.Api v1"));
+              
             }
+            app.UseDeveloperExceptionPage();
+            app.UseSwagger();
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "PruebaToughbuilt.Api v1"));
 
             app.UseHttpsRedirection();
 
@@ -51,7 +52,7 @@ namespace PruebaToughbuilt.Api
 
             app.UseAuthorization();
 
-            app.UseCors(opt => opt.WithOrigins("http://localhost:4200")
+            app.UseCors(opt => opt.WithOrigins("http://localhost:4200", "https://brave-sky-010870210.1.azurestaticapps.net")
                     .AllowAnyHeader().AllowAnyMethod().AllowCredentials()
           );
 

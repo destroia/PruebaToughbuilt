@@ -18,7 +18,8 @@ namespace PruebaToughbuilt.Data
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(
-                "Data Source=.;Initial Catalog=PruebaToughbuiltDB;Integrated Security=true"
+               "Server=tcp:pruebaservideor.database.windows.net,1433;Initial Catalog=Prueba123;Persist Security Info=False;User ID=prueba;Password=Destroia!#;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
+             // "Data Source=.;Initial Catalog=PruebaToughbuiltDB;Integrated Security=true"
              );
             base.OnConfiguring(optionsBuilder);
             //Primer Migracion   Add-Migration InitialCreate

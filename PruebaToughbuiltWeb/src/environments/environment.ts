@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  urlServices: "https://localhost:44387/api/"
+  urlServices: "https://pruebatoughbuiltapi20220826121237.azurewebsites.net/api/"
 };
 
 /*
