@@ -10,6 +10,7 @@ namespace PruebaToughbuilt.Data.Interface
     public interface IImageData
     {
         Task<bool> SaveUrl(string url,int productId);
-        Task<bool> Delete(Image image);
+        Task<bool> Delete(int id);
+        Task<List<Image>> Get(int id);
     }
 }

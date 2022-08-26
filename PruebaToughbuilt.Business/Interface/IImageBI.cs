@@ -11,7 +11,8 @@ namespace PruebaToughbuilt.Business.Interface
     public interface IImageBI
     {
         Task<bool> SaveUrl(Stream fileOpenReadStream,string ContentType,string FileName, int productId);
-        Task<bool> Delete(Image image);
+        Task<bool> Delete(int id);
+        Task<List<Image>> Get(int id);
     }
 }
 

@@ -5,8 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="interface\" />
-    <Folder Include="Business\" />
+    <ProjectReference Include="..\PruebaToughbuilt.Data\PruebaToughbuilt.Data.csproj" />
   </ItemGroup>
 
 </Project>

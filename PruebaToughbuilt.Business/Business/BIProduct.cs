@@ -16,29 +16,33 @@ namespace PruebaToughbuilt.Business.Business
         {
             Repo = repo;
         }
-        public Task<bool> Create(Product product)
+        public async Task<Product> Create(Product product)
         {
-            throw new NotImplementedException();
+            var result = await Repo.Create(product);
+            return result;
         }
 
-        public Task<bool> Delete(int productId)
+        public async Task<bool> Delete(int productId)
         {
-            throw new NotImplementedException();
+            var result = await Repo.Delete(productId);
+            return result;
         }
 
-        public Task<List<Product>> GetAll(int page, string name, int preice, string description, int categoryId = 0)
+        public async Task<List<Product>> GetAll(int page, string name, int categoryId = 0)
         {
-            throw new NotImplementedException();
+            var result = await Repo.GetAll(page, name, categoryId);
+            return result;
         }
 
-        public Task<Product> GetProductById(int id)
+        public async Task<Product> GetProductById(int id)
         {
-            throw new NotImplementedException();
+            return await Repo.GetProductById(id);
         }
 
-        public Task<bool> Update(Product product)
+        public async Task<bool> Update(Product product)
         {
-            throw new NotImplementedException();
+            var result = await Repo.Update(product);
+            return result;
         }
     }
 }

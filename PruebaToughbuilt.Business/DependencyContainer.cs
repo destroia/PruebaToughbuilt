@@ -17,6 +17,7 @@ namespace PruebaToughbuilt.Business
             services.AddTransient<IImageBI, BIImage>();
             services.AddTransient<IProductBI, BIProduct>();
             services.AddTransient<ICategoryBI, BICategory>();
+            services.AddTransient<ICharacteristicBI, BICharacteristic>();
 
             return services;
         }

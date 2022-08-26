@@ -1,4 +1,5 @@
-﻿using PruebaToughbuilt.Data.Interface;
+﻿using Microsoft.EntityFrameworkCore;
+using PruebaToughbuilt.Data.Interface;
 using PruebaToughbuilt.Models;
 using System;
 using System.Collections.Generic;
@@ -15,17 +16,34 @@ namespace PruebaToughbuilt.Data.Data
         {
             DB = db;
         }
-        public async Task<bool> Delete(Image image)
+        public async Task<bool> Delete(int id)
         {
             try
             {
-                DB.Images.Remove(image);
-                await DB.SaveChangesAsync();
-                return true;
+                var model = await DB.Images.FindAsync(id);
+                if (model != null)
+                {
+                    DB.Images.Remove(model);
+                    await DB.SaveChangesAsync();
+                    return true;
+                }
+                return false;
             }
             catch (Exception)
             {
                 return false;
+            }
+        }
+
+        public async Task<List<Image>> Get(int id)
+        {
+            try
+            {
+                return await DB.Images.Where(x => x.ProductId == id).ToListAsync();
+            }
+            catch (Exception)
+            {
+                return null;
             }
         }
 

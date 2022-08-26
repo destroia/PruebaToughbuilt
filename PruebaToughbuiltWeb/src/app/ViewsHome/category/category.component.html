@@ -1,0 +1,56 @@
+<div class="container">
+  <br />
+  <button (click)="Atra()" class="btn " style=" height: 30px;background:#000000; color: #FFFFFF ">Atras </button>
+  <br />
+  <form [formGroup]="formCategory" style="margin:50px;">
+    <h2>{{actionStr}}</h2>
+    <div class="row">
+      <div class="col-12 col-sm-4 ">
+        <div class="form-group required">
+          <label class="control-label">Nombre Categoria  </label>
+          <input type="text" class="form-control" formControlName="name" placeholder="Ingrese el nombre de el producto ">
+          <p *ngIf="formCategory.controls['name'].invalid && formCategory.controls['name'].dirty" class="text-danger"> El nombre de la categoria es requerido   y requiere una longitud mínima de 4 caracteres y la maxima es 15 caracteres </p>
+        </div>
+      </div>
+      <div class="col-12  col-sm-4" align="center">
+        <button class="btn btn-primary btn-large btn-block" style="width:70%; position:relative; top:25px" [disabled]="formCategory.invalid" (click)="Save()">Guardar</button>
+      </div>
+    </div>
+  </form>
+  <h2>List Categorias</h2>
+  <div class="col-12 col-sm-6">
+    <div class="table-responsive ">
+      <table class="table  table-striped">
+        <thead>
+          <tr class="table-striped ">
+            <th scope="col">Nombre Categoria </th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let li of categories" class="table-striped ">
+            <td>
+              {{
+li.name
+              }}
+            </td>
+
+
+            <td align="right">
+              <div class="btn-group" role="group">
+                <button (click)="Update(li)" class="btn " style=" height: 30px;background:#000000; color: #FFFFFF ">Actualizar </button>
+                <button (click)="Delete(li)" class="btn " style=" height: 30px;background:#000000; color: #FFFFFF ">Eliminar </button>
+              </div>
+            </td>
+            <td>
+            </td>
+          </tr>
+
+        </tbody>
+
+      </table>
+    </div>
+  </div>
+
+</div>

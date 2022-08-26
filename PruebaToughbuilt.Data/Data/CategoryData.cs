@@ -34,12 +34,16 @@ namespace PruebaToughbuilt.Data.Data
         {
             try
             {
-                var model = await DB.Categories.FindAsync(categoryId);
-                if (model != null)
+                var result = await DB.Products.FirstOrDefaultAsync(x => x.CategoryId == categoryId);
+                if (result == null)
                 {
-                    DB.Categories.Remove(model);
-                    await DB.SaveChangesAsync();
-                    return true;
+                    var model = await DB.Categories.FindAsync(categoryId);
+                    if (model != null)
+                    {
+                        DB.Categories.Remove(model);
+                        await DB.SaveChangesAsync();
+                        return true;
+                    }
                 }
                 return false;
             }

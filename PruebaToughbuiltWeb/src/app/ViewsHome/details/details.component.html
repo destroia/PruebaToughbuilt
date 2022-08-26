@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row">
+    <div class="col-6">
+
+      <div *ngFor="let li of product.images">
+        <div>
+          <img src="{{li.url}}" alt="Los Angeles" width="300" height="300">
+        </div>
+      </div>
+
+
+    </div>
+    <div class="col-6">
+      <h2>Nombre : &nbsp;{{product.name}}</h2>
+      <h4>Precio : &nbsp;{{product.price}}</h4>stock
+      <h4>Stock : &nbsp;{{product.stock}}</h4>description
+      <h4>Descripcion : &nbsp;{{product.description}}</h4>
+
+      <h2> Caracterisotcas </h2>
+      <div *ngFor="let li of product.characteristics">
+        &diams; &nbsp;&nbsp;{{li.item}}
+      </div>
+      <br />
+      <br />
+      <button type="button" class="btn btn-primary" (click)="Atras()">Atras</button>
+    </div>
+  </div>
+  
+  </div>
+

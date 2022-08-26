@@ -15,6 +15,6 @@ namespace PruebaToughbuilt.Models
         public int ProductId { get; set; }
         [Required]
         [StringLength(15,ErrorMessage ="Las caracteristicas del producto deben de ser minimo de 4 caracteres maximo de 15 caracteres ",MinimumLength =4)]
-        public int Item { get; set; }
+        public string Item { get; set; }
     }
 }

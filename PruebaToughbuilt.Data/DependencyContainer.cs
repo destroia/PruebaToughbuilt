@@ -27,6 +27,7 @@ namespace PruebaToughbuilt.Data
             services.AddScoped<IImageData, ImageData>();
             services.AddScoped<ICategoryData, CategoryData>();
             services.AddScoped<IBlobData, BlobData>();
+            services.AddScoped<ICharacteristicsData, CharacteristicsData>();
 
             return services;
         }

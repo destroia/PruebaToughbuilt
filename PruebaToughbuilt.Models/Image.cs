@@ -14,6 +14,7 @@ namespace PruebaToughbuilt.Models
         [Required]
         public int ProductId { get; set; }
         [Required]
+        [StringLength(200,MinimumLength =4)]
         public string Url { get; set; }
     }
 }

@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PruebaToughbuilt.Data", "Pr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PruebaToughbuilt.Business", "PruebaToughbuilt.Business\PruebaToughbuilt.Business.csproj", "{B5F344F4-AAEF-4D02-B375-06B72E2E6841}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PruebaToughbuilt.Api", "PruebaToughbuilt.Api\PruebaToughbuilt.Api.csproj", "{1A43BCE4-C179-4506-927B-283862A10E99}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PruebaToughbuilt.Api", "PruebaToughbuilt.Api\PruebaToughbuilt.Api.csproj", "{1A43BCE4-C179-4506-927B-283862A10E99}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

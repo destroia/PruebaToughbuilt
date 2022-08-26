@@ -10,8 +10,8 @@ namespace PruebaToughbuilt.Business.Interface
     public interface IProductBI
     {
         Task<Product> GetProductById(int id);
-        Task<List<Product>> GetAll(int page, string name, int preice, string description, int categoryId = 0);
-        Task<bool> Create(Product product);
+        Task<List<Product>> GetAll(int page, string name, int categoryId = 0);
+        Task<Product> Create(Product product);
         Task<bool> Update(Product product);
         Task<bool> Delete(int productId);
     }

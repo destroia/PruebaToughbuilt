@@ -1,0 +1,144 @@
+<p>pruduct works!</p>
+
+
+<div class="container">
+  <button type="button" class="btn btn-primary" (click)="CreateNewProduct()">Crear Nuevo Producto</button> &nbsp;&nbsp;&nbsp;
+  <button type="button" class="btn btn-primary" (click)="CreateNewCategoryt()">Crear Categoria</button>
+  <br />
+  <form [formGroup]="formularioSearch" style="margin:50px;">
+    <h2>Filtar</h2>
+    <div class="row">
+      <div class="col-12 col-sm-4 ">
+        <div class="form-group required">
+          <label class="control-label">Nombre  </label>
+          <input type="text" class="form-control" formControlName="name" placeholder="Ingrese el nombre de el producto ">
+        </div>
+      </div>
+      <div class="col-12 col-sm-4 ">
+        <div class="form-group required">
+          <label class="control-label"> Categoría  </label>
+          <select class="form-control" formControlName="categoryId">
+            <option *ngFor="let li of categories" [value]="li.id">{{li.name}}</option>
+            <option value="0">Todas</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="col-12  col-sm-4" align="center">
+      <button class="btn btn-primary btn-large btn-block" style="width:70%; position:relative; top:25px"  (click)="Search()">Buscar</button>
+
+
+    </div>
+  </form>
+
+
+  <div align="right" style="position:relative; top:-10px;">
+    <label>
+      <button (click)="Pri()" style="background:transparent ; border:none">
+        <img height="35" src="../../../assets/Icons/arrow_first_page.svg" />
+      </button>
+      <button (click)="Ant()" style="background:transparent ; border:none">
+        <img src="../../../assets/Icons/arrow_back.svg" alt="" />
+      </button>
+
+      <strong>Pag {{page }} &nbsp;&nbsp;de&nbsp;&nbsp;{{totalPage}}</strong>
+
+      <button (click)="Sig()" style="background: transparent; border: none">
+        <img src="../../../assets/Icons/arrow_forward.svg" />
+      </button>
+      <button (click)="Ult()" style="background: transparent; border: none">
+        <img height="35" src="../../../assets/Icons/arrow_last_page.svg" />
+      </button>
+    </label>
+  </div>
+
+  <div class="row">
+    <div *ngFor="let item of Products">
+
+      <div class="col-6 col-sm-4 col-xl-3 col-md-6 col-sm-6  col-lg-4 ">
+        <div class="card mx-auto" style="width: 17rem;  height: 31rem;">
+          <a (click)="Detalles()" style="cursor:pointer;">
+            <img [src]="item.images[0].url" class="card-img-top" height="300" id="example2" alt="../../" />
+          </a>
+          <div class="card-body">
+            <!--Titutlo-->
+            <h5 class="card-title" (click)="Detalles(item)" style="cursor:pointer;">{{item.name}}</h5>
+            <!--Descripcion-->
+            <p class="card-text" (click)="Detalles(item)">{{item.description }} <strong><H6> Mas..</H6></strong></p>
+            <!--Precio-->
+            <!--left-inner-addon-->
+
+          </div>
+
+          <div class="card-footer" style=" z-index: 3;">
+
+
+
+            <div class="left-inner-addonBandera">
+              <span><h6><strong>$</strong>{{item.price}}</h6></span>
+
+
+            </div>
+            <br />
+
+            <button type="button" class="btn btn-primary" style="cursor:pointer;" (click)="Detalles(item)">Agregar Compra </button>
+
+
+          </div>
+        </div>
+      </div>
+
+      <br />
+
+    </div>
+
+
+
+
+
+  </div>
+
+
+
+
+
+  <!--<div class="col-6 col-sm-4 col-xl-3 col-md-6 col-sm-6  col-lg-4  ">
+
+    <div class="card mx-auto" style="width: 17rem;">
+      <img src="../../../assets/images/gallery/chair3.jpg" class="card-img-top" height="300" width="100" alt="...">
+      <div class="card-body">-->
+  <!--Titutlo-->
+  <!--<h5 class="card-title">Card title</h5>-->
+  <!--Descripcion-->
+  <!--<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
+  <!--Precio-->
+  <!--left-inner-addon-->
+  <!--<div class="left-inner-addon">
+          <span><h6><strong>BTC: </strong>5.000</h6></span>
+          <img src="../../../assets/images/bitcoin/bitcoin-transpa.webp" height="10" width="50" alt="...">
+
+        </div>
+
+        <div class="left-inner-addonBandera">
+          <span><h6><strong>US  : </strong>353453</h6></span>
+
+          <img src="../../../assets/images/bitcoin/bandera-usa.webp" height="18" width="38" alt="...">
+        </div>
+
+        <div class="left-inner-addonBandera">
+          <span><h6><strong>COP: </strong>353453</h6></span>
+
+          <img src="../../../assets/images/bitcoin/bandera-colombiana.jpg" height="18" width="38" alt="...">
+        </div>
+        <br />
+
+        <button type="button" class="btn btn-primary" (click)="Detalles()">Agregar Compra </button>
+      </div>
+
+    </div>
+
+    <br />
+
+  </div>-->
+</div>
+

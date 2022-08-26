@@ -1,0 +1,229 @@
+<div class="container">
+  <button (click)="Atras()" class="btn btn-primary">Atras </button> &nbsp;&nbsp;&nbsp;&nbsp;
+  <button (click)="CreateProduct()" class="btn btn-primary">Crear Producto </button> &nbsp;&nbsp;&nbsp;&nbsp;
+  <button (click)="UpdateProduct()" class="btn btn-primary">Actualizar Producto </button>
+  <br />
+  <form [formGroup]="formularioCreateProduct" *ngIf="showCrateOrUpdate" style="margin:50px;">
+    <h2>Crear</h2>
+    <div class="row">
+      <div class="col-12 col-sm-4 ">
+        <div class="form-group required">
+          <label class="control-label">Nombre  </label>
+          <input type="text" class="form-control" formControlName="name" placeholder="Ingrese el nombre de el producto ">
+          <p *ngIf="formularioCreateProduct.controls['name'].invalid && formularioCreateProduct.controls['name'].dirty" class="text-danger"> El nombre de el producto es requerido  y requiere una longitud mínima de 4 caracteres y un maximo de 50 caracteres </p>
+        </div>
+      </div>
+      <div class="col-12 col-sm-4 ">
+        <div class="form-group required">
+          <label class="control-label"> Categoría  </label>
+          <select class="form-control" formControlName="categoryId" (change)="onChangeCategoria($event.target.value)">
+            <option *ngIf="ErrorCategories !== ''" value="" selected>
+              {{
+                  ErrorCategories
+              }}
+            </option>
+            <option *ngFor="let li of categories" [value]="li.id">{{li.name}}</option>
+            <option class='option' value="add">Agregar Categoría </option>
+
+          </select>
+          <p *ngIf="formularioCreateProduct.controls['categoryId'].invalid && formularioCreateProduct.controls['categoryId'].dirty" class="text-danger"> Debe seleccionar una categoría </p>
+        </div>
+      </div>
+      <div class="col-12 col-sm-4 ">
+        <div class="form-group required">
+          <label class="control-label">Stock/Cantidad</label>
+          <input type="number" class="form-control" onKeypress="if (event.keyCode < 48 || event.keyCode > 57 ) event.returnValue = false;" formControlName="stock" placeholder="Ingrese el stock o cantidad de producto ">
+          <p *ngIf="formularioCreateProduct.controls['stock'].invalid && formularioCreateProduct.controls['stock'].dirty" class="text-danger"> El campo stock o cantidad de el producto es requerido</p>
+        </div>
+      </div>
+      <div class="col-12 col-sm-4 ">
+        <div class="form-group required">
+          <label class="control-label">Costo </label>
+          <input type="number" class="form-control" onKeypress="if (event.keyCode < 48 || event.keyCode > 57 ) event.returnValue = false;" formControlName="price" placeholder="Ingrese el costro de el producto">
+          <p *ngIf="formularioCreateProduct.controls['price'].invalid && formularioCreateProduct.controls['price'].dirty" class="text-danger"> El costro de el producto es requerido </p>
+        </div>
+      </div>
+
+
+      <div class="col-12 col-sm-4 ">
+        <div class="form-group">
+          <label class="control-label">Descripcion </label>
+          <textarea type="text" class="form-control" formControlName="description" placeholder="Ingrese las descripcion del producto  "></textarea>
+        </div>
+      </div>
+
+
+      <div class="col-12  col-sm-4" align="center">
+        <button class="btn btn-primary btn-large btn-block" style="width:70%; position:relative; top:25px" [disabled]="formularioCreateProduct.invalid" (click)="Save()">Guardar</button>
+
+
+      </div>
+    </div>
+  </form>
+  <div *ngIf="CharacteristicBool">
+    <button (click)="showCha()" class="btn btn-primary">Añadir Caracteristicas </button> &nbsp;&nbsp;&nbsp;&nbsp;
+    <button (click)="showImage()" class="btn btn-primary">Añadir Imagenes </button>
+    <br />
+    <div *ngIf="showChavar">
+      <div class="col-12 ">
+        <h2>Caracteristicas del Producto</h2>
+        <br />
+        <form [formGroup]="formularioCharacteristic" style="margin:50px;">
+          <h2>CharacteristicStr</h2>
+          <div class="row">
+            <div class="col-12 col-sm-4 ">
+              <div class="form-group required">
+                <label class="control-label"> Cracteristica </label>
+                <input type="text" class="form-control" formControlName="item" placeholder="Ingrese el nombre de el producto ">
+                <p *ngIf="formularioCharacteristic.controls['item'].invalid && formularioCharacteristic.controls['item'].dirty" class="text-danger"> La Caracteristica es requerida   y requiere una longitud mínima de 4 caracteres y maxima de 15 caracteres </p>
+              </div>
+            </div>
+            <div class="col-12  col-sm-4" align="center">
+              <button class="btn btn-primary btn-large btn-block" style="width:70%; position:relative; top:25px" [disabled]="formularioCharacteristic.invalid" (click)="SaveCharacteristic()">Guardar</button>
+
+
+            </div>
+          </div>
+        </form>
+        <br />
+        <h2>Lista de Caracteristicas</h2>
+        <div class="table-responsive ">
+          <table class="table  table-striped">
+            <thead>
+              <tr class="table-striped ">
+                <th scope="col">Nombre Categoria </th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let li of Characteristic" class="table-striped ">
+                <td>
+                  {{
+                    li.item
+                  }}
+                </td>
+
+
+                <td align="right">
+                  <div class="btn-group" role="group">
+                    <button (click)="UpdateCharacteristic(li)" class="btn " style=" height: 30px;background:#000000; color: #FFFFFF ">Actualizar </button>
+                    <button (click)="DeleteCharacteristic(li)" class="btn " style=" height: 30px;background:#000000; color: #FFFFFF ">Eliminar </button>
+                  </div>
+                </td>
+                <td>
+                </td>
+              </tr>
+
+            </tbody>
+
+          </table>
+
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="showImagevar">
+
+      <div>
+        <div class="col-12  " align="center">
+          <br />
+          <input type="file" #file placeholder="Ver ficheros" (change)="uploadFile(file.files,2)" style="display:none;">
+          <button class="btn btn-white btn-outline-dark btn-large btn-block" type="button" (click)="file.click()">Subir Imagen</button>
+          <!--<button class="btn btn-white btn-outline-dark btn-large btn-block" style="width:70%; position:relative; top:25px" (click)="Close()">Crear Producto por Carga Masiva</button>-->
+          <h2>Lista imagenes </h2>
+          <br />
+          <div class="col-12">
+            <div class="table-responsive ">
+              <table class="table  table-striped">
+                <thead>
+                  <tr class="table-striped ">
+                    <th scope="col">imagen  </th>
+                    <th scope="col"> Url</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let li of images" class="table-striped ">
+                    <td><img src="{{li.url}}" height="100" width="100" alt="Alternate Text" /></td>
+                    <td>{{li.url}}></td>
+                    <td align="right">
+                      <div class="btn-group" role="group">
+
+                        <button (click)="DeleteImage(li)" class="btn " style=" height: 30px;background:#000000; color: #FFFFFF ">Eliminar  </button>
+                      </div>
+                    </td>
+                    <td>
+                    </td>
+                  </tr>
+
+                </tbody>
+
+              </table>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div *ngIf="showCrateOrUpdate === false">
+
+    <div align="right" style="position:relative; top:-10px;">
+      <label>
+        <button (click)="Pri()" style="background:transparent ; border:none">
+          <img height="35" src="../../../assets/Icons/arrow_first_page.svg" />
+        </button>
+        <button (click)="Ant()" style="background:transparent ; border:none">
+          <img src="../../../assets/Icons/arrow_back.svg" />
+        </button>
+
+        <strong>Pag {{page }} &nbsp;&nbsp;de&nbsp;&nbsp;{{totalPage}}</strong>
+
+        <button (click)="Sig()" style="background: transparent; border: none">
+          <img src="../../../assets/Icons/arrow_forward.svg" />
+        </button>
+        <button (click)="Ult()" style="background: transparent; border: none">
+          <img height="35" src="../../../assets/Icons/arrow_last_page.svg" />
+        </button>
+      </label>
+    </div>
+
+    <h2>List Productos</h2>
+    <div class="col-12 ">
+      <div class="table-responsive ">
+        <table class="table  table-striped">
+          <thead>
+            <tr class="table-striped ">
+              <th scope="col">Nombre Categoria </th>
+              <th scope="col">Preicio</th>
+              <th scope="col">Stock</th>
+              <th scope="col">descripcion</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let lis of Products" class="table-striped ">
+              <td> {{lis.name }} </td>
+              <td> {{lis.price }} </td>
+              <td> {{lis.stock }} </td>
+              <td> {{lis.description }} </td>
+
+
+              <td align="right">
+                <div class="btn-group" role="group">
+                  <button (click)="UP(lis)" class="btn btn-primary">Actualizar </button>
+                </div>
+              </td>
+              <td>
+              </td>
+            </tr>
+
+          </tbody>
+
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
